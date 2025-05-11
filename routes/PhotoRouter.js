@@ -12,10 +12,10 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.get("/user/:userId", async (req, res) => {
+router.get("/user/:userId", (req, res) => {
   const userId = req.params.userId;
   try {
-    const photos = await models.photoOfUserModel(userId);
+    const photos = models.photoOfUserModel(userId);
     res.status(200).json(photos);
   } catch (error) {
     res.status(500).json({ message: "Error fetching user's photos", error });
